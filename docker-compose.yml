@@ -1,0 +1,15 @@
+version: '3.2'
+services:
+  main:
+    image: boinc:latest
+    ports:
+      - 31416:31416
+    volumes:
+      - /mnt/storage/docker/boinc:/var/lib/boinc
+    environment:
+      - BOINC_CMD_LINE_OPTIONS=--allow_remote_gui_rpc
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
