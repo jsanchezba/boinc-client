@@ -1,13 +1,14 @@
-version: '3.2'
+version: '3.7'
 services:
   main:
-    image: boinc:latest
+    image: boinc-client:latest
     ports:
       - 31416:31416
     volumes:
-      - /mnt/storage/docker/boinc:/var/lib/boinc
+      - /mnt/storage/docker/boinc:/etc/boinc-client
     environment:
-      - BOINC_CMD_LINE_OPTIONS=--allow_remote_gui_rpc
+      BOINC_GUI_RPC_PASSWORD: CLed3ejl
+      BOINC_CMD_LINE_OPTIONS: --allow_remote_gui_rpc
     deploy:
       mode: replicated
       replicas: 1
